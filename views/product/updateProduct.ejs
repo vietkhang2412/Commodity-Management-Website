@@ -1,0 +1,58 @@
+<%- include('../inc/top.ejs') %>
+    <div class="row m-2">
+        <nav class="col-md-12 d-none d-sm-block" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Products</li>
+                <li class="breadcrumb-item active" aria-current="page">Update Product</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="p-3 row col-12 col-sm-8 col-md-6 m-auto shadow-3 border border-color-success rounded"
+        style="background-color: #f4f5f7">
+        <form method="POST" action="products/update-product">
+            <div class="mb-3">
+                <label for="exampleInputFullname1" class="form-label">Tên Sản Phẩm:</label>
+                <input type="text" value="<%= detailPro[0].tensanpham %>" class="form-control"
+                    id="exampleInputFullname1" name="tensanpham" />
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputUsername1" class="form-label">Giá Sản Phẩm:</label>
+                <input type="text" value="<%= detailPro[0].dongia %>" class="form-control" id="exampleInputUsername1"
+                    name="dongia" />
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Mô Tả:</label>
+                <textarea name="mota" class="form-control" rows="3"><%= detailPro[0].mota %></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Loại Sản Phẩm:</label>
+                <select id="Select" class="form-select" name="theloai">
+
+                    <% for( let i=0; i < dataCats.length; i++ ) { %>
+                        <% if (detailPro[0].theloai==dataCats[i].name ) { %>
+                            <option selected>
+                                <%= detailPro[0].theloai %>
+                            </option>
+                            <% }else{ %>
+                                <option>
+                                    <%= dataCats[i].name %>
+                                </option>
+                                <% } %>
+                                    <% } %>
+
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Hình Ảnh Sản Phẩm:</label>
+                <input name="anhsanpham" class="form-control" type="file" id="formFile">
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="submit" class="btn btn-primary">Sửa</button>
+            </div>
+        </form>
+    </div>
+
+    <%- include('../inc/bottom.ejs') %>

@@ -1,0 +1,41 @@
+<%- include('../inc/top.ejs') %>
+    <div class="row m-2">
+        <nav class="col-md-12 d-none d-sm-block" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Products</li>
+                <li class="breadcrumb-item active" aria-current="page">Detail Product</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="p-3 row col-12 col-md-8 m-auto shadow-3 border border-color-success rounded"
+        style="background-color: #f4f5f7">
+        <div class="col-5" style="width: 300px; height: 370px">
+            <% if (detailPro[0].anhsanpham !="" ) { %>
+                <img src="<%= detailPro[0].anhsanpham %>" class="w-100 h-100 p-1 rounded-4" alt="">
+                <% }else{ %>
+                    <img src="https://i.pinimg.com/564x/72/09/21/720921d9b99bdc03ea02e28d770fdfbc.jpg"
+                        class="w-100 h-100 p-1 rounded-4" alt="">
+                    <% } %>
+        </div>
+        <div class="row col-7 p-1">
+            <div class="title">
+                <p class="fw-bold fs-4">
+                    <%= detailPro[0].tensanpham %>
+                </p>
+                <hr />
+                <p class="fw-bolder text-success">Giá: <%= detailPro[0].dongia %> đ</p>
+                <hr />
+                <p class="fw-nomal">Thể loại: <%= detailPro[0].theloai %>
+                </p>
+                <hr />
+                <label>Mô tả:</label>
+                <p class="mt-2">
+                    <%= detailPro[0].mota %>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../inc/bottom.ejs') %>
