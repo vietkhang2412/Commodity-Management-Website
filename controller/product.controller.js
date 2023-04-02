@@ -14,7 +14,7 @@ const listProduct = async (req, res, next) => {
   }
 
   if (req.session.userid) {
-    var dataPro = await PMD.proModel.find(condition);
+    var dataPro = await PMD.proModel.find(condition).populate("theloai");
     var dataCats = await PMD.catsModel.find();
     res.render("product/products", {
       dataProduct: dataPro,
