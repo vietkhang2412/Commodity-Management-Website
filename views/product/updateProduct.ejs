@@ -12,6 +12,7 @@
     <div class="p-3 row col-12 col-sm-8 col-md-6 m-auto shadow-3 border border-color-success rounded"
         style="background-color: #f4f5f7">
         <form method="POST" action="/products/update-product">
+            <input type="text" hidden value="<%= detailPro[0].id %>" name="id">
             <div class="mb-3">
                 <label for="exampleInputFullname1" class="form-label">Tên Sản Phẩm:</label>
                 <input type="text" value="<%= detailPro[0].tensanpham %>" class="form-control"
@@ -32,12 +33,12 @@
                 <select id="Select" class="form-select" name="theloai">
 
                     <% for( let i=0; i < dataCats.length; i++ ) { %>
-                        <% if (detailPro[0].theloai==dataCats[i].name ) { %>
-                            <option selected>
-                                <%= detailPro[0].theloai %>
+                        <% if (detailPro[0].theloai.name==dataCats[i].name ) { %>
+                            <option value="<%= detailPro[0].theloai.id %>" selected>
+                                <%= detailPro[0].theloai.name %>
                             </option>
                             <% }else{ %>
-                                <option>
+                                <option value="<%= dataCats[i].id %>">
                                     <%= dataCats[i].name %>
                                 </option>
                                 <% } %>
@@ -50,7 +51,7 @@
                 <input name="anhsanpham" class="form-control" type="file" id="formFile">
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="submit" class="btn btn-primary">Sửa</button>
+                <button type="submit" onclick="return alert('Sửa thành công!!!')" class="btn btn-primary">Sửa</button>
             </div>
         </form>
     </div>

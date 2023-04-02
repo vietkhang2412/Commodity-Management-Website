@@ -71,7 +71,7 @@
 
 
                 <% for( let i=0; i < dataCats.length; i++ ) { %>
-                  <option>
+                  <option value="<%= dataCats[i].id %>">
                     <%= dataCats[i].name %>
                   </option>
                   <% } %>
@@ -86,7 +86,7 @@
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 Đóng
               </button>
-              <button type="submit" class="btn btn-primary">Thêm</button>
+              <button type="submit" onclick="return alert('Thêm thành công!!!')" class="btn btn-primary">Thêm</button>
             </div>
           </form>
         </div>
@@ -140,7 +140,8 @@
                 </div>
                 <form class="col-md-4 col-12" action="products/delete-product" method="post">
                   <input type="text" hidden value="<%= dataProduct[i].id %>" name="id" />
-                  <button type="submit" class="btn btn-danger">Xóa</button>
+                  <button type="submit" onclick="return confirm('Bạn có đồng ý xóa sản phẩm này không?')"
+                    class="btn btn-danger">Xóa</button>
                 </form>
               </div>
             </td>

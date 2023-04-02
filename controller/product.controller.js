@@ -65,9 +65,9 @@ const addProduct = async (req, res) => {
 
 const getUpdateProduct = async (req, res, next) => {
   if (req.session.userid) {
-    let idPro = req.params.id;
+    var idPro = req.params.id;
     console.log(">>>>>>>>>Check id: ", idPro);
-    var detailPro = await PMD.proModel.find({ _id: idPro });
+    var detailPro = await PMD.proModel.find({ _id: idPro }).populate("theloai");
     var dataCats = await PMD.catsModel.find();
     res.render("product/updateProduct", {
       adminName: req.session.userid,
@@ -78,7 +78,24 @@ const getUpdateProduct = async (req, res, next) => {
   res.status(404).end();
 };
 
-const updateProduct = (req, res) => {
+const updateProduct = async (req, res) => {
+  if (req.session.userid) {
+    let objPro = new PMD.proModel();
+
+    (objPro.tensanpham = req.body.tensanpham),
+      (objPro.anhsanpham = req.body.anhsanpham),
+      (objPro.theloai = req.body.theloai),
+      (objPro.mota = req.body.mota),
+      (objPro.dongia = req.body.dongia);
+    objPro._id = req.body.id;
+
+    try {
+      await PMD.proModel.findByIdAndUpdate(objPro._id, objPro);
+      console.log("Đã sửa thành công!");
+    } catch (error) {
+      console.log("Sửa thất bại!");
+    }
+  }
   res.redirect("/products");
 };
 
