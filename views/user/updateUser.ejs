@@ -1,0 +1,64 @@
+<%- include('../inc/top.ejs') %>
+    <div class="row m-2">
+        <nav class="col-md-12 d-none d-sm-block" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Users</li>
+                <li class="breadcrumb-item active" aria-current="page">Update User</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="p-3 row col-12 col-sm-8 col-md-6 m-auto shadow-3 border border-color-success rounded"
+        style="background-color: #f4f5f7">
+        <form method="POST" action="/users/update-user">
+            <input type="text" hidden value="<%= userUp.id %>" name="idU">
+            <div class="mb-3">
+                <label for="exampleInputFullname1" class="form-label">Tên Người Dùng:</label>
+                <input type="text" class="form-control" value="<%= userUp.fullname %>" id="exampleInputFullname1"
+                    name="fullname" />
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputUsername1" class="form-label">Tên Đăng Nhập:</label>
+                <input type="text" class="form-control" value="<%= userUp.username %>" id="exampleInputUsername1"
+                    name="username" />
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Mật Khẩu:</label>
+                <input type="password" class="form-control" value="<%= userUp.password %>" id="exampleInputPassword1"
+                    name="password" />
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                <input type="email" class="form-control" value="<%= userUp.email %>" id="exampleInputEmail1"
+                    name="email" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Vai Trò</label>
+                <select id="Select" class="form-select" name="role">
+                    <% if (userUp.role=="Admin" ) { %>
+                        <option selected>
+                            <%= userUp.role %>
+                        </option>
+                        <option>
+                            User
+                        </option>
+                        <% }else{ %>
+                            <option selected>
+                                <%= userUp.role %>
+                            </option>
+                            <option>
+                                Admin
+                            </option>
+                            <% } %>
+                </select>
+            </div>
+
+            <div class="modal-footer justify-content-center">
+                <button type="submit" onclick="return confirm('Xác nhận sửa!')" class="btn btn-primary">Sửa</button>
+            </div>
+        </form>
+    </div>
+
+    <%- include('../inc/bottom.ejs') %>
