@@ -16,12 +16,19 @@
 
 
   <div class="d-flex justify-content-between align-items-center bg-body-tertiary">
-    <form class="col-10 d-flex justify-content-center align-items-center">
-      <div class="col-2">
-        <select class="form-select" aria-label="Default select example">
-          <option selected value="1">Tên Sản Phẩm</option>
-          <option value="2">Loại Sản Phẩm</option>
-          <option value="3">Giá Sản Phẩm</option>
+    <form method="post" class="col-10 d-flex justify-content-center align-items-center">
+      <div class="col-3 d-flex">
+
+        <!-- <span for="">Hiển thị theo loại: </span> -->
+        <select class="form-select" name="sortTL" onchange="this.form.submit()">
+          <option selected>Lọc thể loại</option>
+          <option value="all">Tất cả</option>
+          <% for( let i=0; i < dataCats.length; i++ ) { %>
+            <option value="<%= dataCats[i].id %>">
+              <%= dataCats[i].name %>
+            </option>
+            <% } %>
+
         </select>
       </div>
 
@@ -51,7 +58,7 @@
         </div>
         <div class="modal-body">
           <!-- Xử lý thêm sản phẩm tĩnh -->
-          <form method="post" action="products/addProduct">
+          <form method="post" action="products/addProduct" enctype="multipart/form-data">
             <div class="mb-3">
               <label for="exampleInputFullname1" class="form-label">Tên Sản Phẩm:</label>
               <input type="text" class="form-control" id="exampleInputFullname1" name="tensanpham" />
@@ -80,13 +87,14 @@
             </div>
             <div class="mb-3">
               <label for="formFile" class="form-label">Hình Ảnh Sản Phẩm:</label>
-              <input name="anhsanpham" class="form-control" type="file" id="formFile">
+              <input name="anhsanpham" class="form-control" type="file">
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 Đóng
               </button>
-              <button type="submit" onclick="return alert('Thêm thành công!!!')" class="btn btn-primary">Thêm</button>
+              <button type="submit" class="btn btn-primary">Thêm</button>
             </div>
           </form>
         </div>
@@ -98,13 +106,29 @@
     <table id="tableBodyProduct" class="table table-striped mt-3">
       <thead>
         <tr>
-          <th class="fw-bold" scope="col">#</th>
-          <th class="fw-bold" scope="col">Tên Sản Phẩm</th>
-          <th class="fw-bold" scope="col">Loại Sản Phẩm</th>
-          <th class="fw-bold" scope="col">Đơn Giá</th>
-          <th class="fw-bold" scope="col">Mô Tả</th>
-          <th class="fw-bold" scope="col">Ảnh Sản Phẩm</th>
-          <th class="fw-bold" scope="col">Action</th>
+          <th scope="col"><button class="btn fw-bold m-0 p-0">#</button></th>
+          <th scope="col">
+            <form method="POST" action="">
+              <input type="hidden" name="sortNamePro" value="<%= sortPro %>">
+              <button type="submit" class="btn fw-bold m-0 p-0">Tên Sản Phẩm<i
+                  class="fa-solid fa-sort ms-2"></i></button>
+            </form>
+          </th>
+          <th scope="col">
+            <form method="POST" action="">
+              <input type="hidden" name="sortCatPro" value="<%= sortPro %>">
+              <button type="submit" class="btn fw-bold m-0 p-0">Thể Loại<i class="fa-solid fa-sort ms-2"></i></button>
+            </form>
+          </th>
+          <th scope="col">
+            <form method="POST" action="">
+              <input type="hidden" name="sortPricePro" value="<%= sortPro %>">
+              <button type="submit" class="btn fw-bold m-0 p-0">Đơn Giá<i class="fa-solid fa-sort ms-2"></i></button>
+            </form>
+          </th>
+          <th class="fw-bold" scope="col"><button class="btn fw-bold m-0 p-0">Mô Tả</button></th>
+          <th class="fw-bold" scope="col"><button class="btn fw-bold m-0 p-0">Ảnh Sản Phẩm</button></th>
+          <th class="fw-bold" scope="col"><button class="btn fw-bold m-0 p-0">Action</button></th>
         </tr>
       </thead>
       <tbody>
@@ -123,11 +147,11 @@
             <td>
               <%= dataProduct[i].dongia %>
             </td>
-            <td>
+            <td style="max-width: 300px; width: 250px;">
               <%= dataProduct[i].mota %>
             </td>
             <td>
-              <img src="<%= dataProduct[i].anhsanpham%>" width="32" height="32" />
+              <img src="<%= dataProduct[i].anhsanpham %>" width="32" height="32" />
             </td>
             <td>
               <!-- Xem, Sửa, Xóa -->

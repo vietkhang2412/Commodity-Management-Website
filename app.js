@@ -7,6 +7,8 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var productRouter = require("./routes/products");
+var categoryRouter = require("./routes/categories");
+var apiRouter = require("./routes/api");
 var session = require("express-session");
 
 var app = express();
@@ -34,6 +36,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/products", productRouter);
+app.use("/products/categories", categoryRouter);
+app.use("/api", apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -48,7 +52,18 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error");
+
+  //kiểm tra link nếu là API thì trả về dữ liệu dạng json
+  //GET: /api/users
+
+  if (req.originalUrl.indexOf("/api") == 0) {
+    res.json({
+      status: 0,
+      msg: err.message,
+    });
+  } else {
+    res.render("error");
+  }
 });
 
 module.exports = app;

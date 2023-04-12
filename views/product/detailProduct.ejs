@@ -3,7 +3,7 @@
         <nav class="col-md-12 d-none d-sm-block" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Products</li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="/products">Products</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Detail Product</li>
             </ol>
         </nav>
@@ -27,7 +27,7 @@
                 <hr />
                 <p class="fw-bolder text-success">Giá: <%= detailPro[0].dongia %> đ</p>
                 <hr />
-                <p class="fw-nomal">Thể loại: <%= detailPro[0].theloai %>
+                <p class="fw-nomal">Thể loại: <%= detailPro[0].theloai.name %>
                 </p>
                 <hr />
                 <label>Mô tả:</label>

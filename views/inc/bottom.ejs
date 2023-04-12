@@ -13,7 +13,7 @@
                                                 aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                        <form action="/" method="post">
+                                        <form method="post" action="">
                                                 <!-- Email input -->
                                                 <div class="form-outline mb-4">
                                                         <input name="username" placeholder="Username" type="text"
@@ -100,56 +100,43 @@
                                                 aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                        <form>
+                                        <form method="post" action="users/register">
+                                                <div class="form-outline mb-4">
+                                                        <input placeholder="Fullname" type="text" id="form2Example1"
+                                                                class="form-control" name="fullname" />
+                                                </div>
                                                 <!-- Username input -->
                                                 <div class="form-outline mb-4">
                                                         <input placeholder="Username" type="text" id="form2Example1"
-                                                                class="form-control" />
+                                                                class="form-control" name="username" />
                                                 </div>
 
                                                 <!-- Email input -->
                                                 <div class="form-outline mb-4">
                                                         <input placeholder="Email address" type="email"
-                                                                id="form2Example2" class="form-control" />
+                                                                id="form2Example2" name="email" class="form-control" />
                                                 </div>
 
                                                 <!-- Password input -->
                                                 <div class="form-outline mb-4">
                                                         <input placeholder="Password" type="password" id="form2Example3"
-                                                                class="form-control" />
+                                                                class="form-control" name="password" />
                                                 </div>
 
-                                                <!-- Repeat password input -->
                                                 <div class="mb-3">
                                                         <label class="form-label">Vai Trò</label>
-                                                        <select id="Select" class="form-select" name="position">
+                                                        <select id="Select" class="form-select" name="role">
                                                                 <option selected>Admin</option>
                                                                 <option>User</option>
                                                         </select>
                                                 </div>
 
-                                                <!-- 2 column grid layout for inline styling -->
-                                                <div class="row mb-4">
-                                                        <div class="col d-flex justify-content-center">
-                                                                <!-- Checkbox -->
-                                                                <div
-                                                                        class="form-check d-flex justify-content-center mb-2">
-                                                                        <input class="form-check-input me-2"
-                                                                                type="checkbox" value=""
-                                                                                id="registerCheck" checked
-                                                                                aria-describedby="registerCheckHelpText" />
-                                                                        <label class="form-check-label"
-                                                                                for="registerCheck">
-                                                                                I have read and agree to the terms
-                                                                        </label>
-                                                                </div>
-                                                        </div>
-                                                </div>
-
                                                 <!-- Submit button -->
-                                                <button style="width: 100%" type="button"
-                                                        class="btn btn-primary btn-block mb-4">
-                                                        Sign in
+                                                <button style="width: 100%" type="submit"
+                                                        class="btn btn-primary btn-block mb-4"
+                                                        onclick="return alert('Đăng kí thành công')">
+
+                                                        Register
                                                 </button>
 
                                                 <!-- Register buttons -->

@@ -1,26 +1,33 @@
-const getHome = (req, res) => {
-  if (req.session.userid) {
-    res.render("home/home", { adminName: req.session.userid });
-  }
-  res.status(404).end();
+var UMD = require("../models/user.model");
+
+const getHome = async (req, res) => {
+  res.render("home/home", { adminName: req.session.userid });
 };
 
-const postHome = (req, res) => {
-  const username = "khangdv";
-  const password = "1";
+const getWeblogin = async (req, res) => {
+  // req.session.destroy();
+  let announce = "";
 
-  if (req.body.username == username && req.body.password == password) {
-    req.session.userid = req.body.username;
-    console.log(req.session);
-    res.render("home/home", { adminName: req.session.userid });
-  } else {
-    res.redirect("/");
+  if (req.method == "POST") {
+    try {
+      let objU = await UMD.userModel.findOne({ username: req.body.username });
+      console.log(objU);
+      if (objU != null) {
+        if (objU.password == req.body.password) {
+          req.session.userid = req.body.username;
+          console.log(req.session);
+          return res.render("home/home", { adminName: req.session.userid });
+        } else {
+          announce = "Sai mật khẩu !!!";
+        }
+      } else {
+        announce = "Tài khoản không tồn tại !!!";
+      }
+    } catch (error) {
+      announce = "Lỗi " + error.message;
+    }
   }
-};
-
-const getWeblogo = (req, res) => {
-  req.session.destroy();
-  res.render("home/webLogo");
+  res.render("home/webLogin", { announce: announce });
 };
 
 const getLogout = (req, res) => {
@@ -34,8 +41,7 @@ const getProfile = (req, res) => {
 
 module.exports = {
   getHome,
-  postHome,
-  getWeblogo,
+  getWeblogin,
   getLogout,
   getProfile,
 };

@@ -11,15 +11,15 @@
 
     <div class="title d-flex justify-content-center mb-3 bg-light col-12">
         <h3>Danh sách người dùng</h3>
-        <!-- <%= JSON.stringify(dataUser) %> -->
+        <!-- <%# JSON.stringify(dataUser) %> -->
     </div>
 
     <div class="d-flex justify-content-between align-items-center bg-body-tertiary">
-        <form class="col-10 d-flex justify-content-center align-items-center">
+        <form method="POST" action="" class="col-10 d-flex justify-content-center align-items-center">
             <!-- Search -->
             <div class="col-5 mx-4">
-                <input id="inputSearchProduct" class="form-control me-2" type="search" placeholder="Tìm kiếm..."
-                    aria-label="Search" />
+                <input id="inputSearchProduct" name="inputsort" class="form-control me-2" type="search"
+                    placeholder="Tìm kiếm..." aria-label="Search" />
             </div>
 
             <div class="col-1"><button type="submit" class="btn btn-secondary">Search</button></div>
@@ -83,15 +83,37 @@
 
 
     <div class="col-12 col-sm-11 mx-sm-auto my-4 border border-color-default rounded">
-        <table id="tableBodyProduct" class="table table-striped mt-3">
+        <table class="table table-striped mt-3">
             <thead>
                 <tr>
-                    <th class="fw-bold" scope="col">ID</th>
-                    <th class="fw-bold" scope="col">Tên Người Dùng</th>
-                    <th class="fw-bold" scope="col">Tên Đăng Nhập</th>
-                    <th class="fw-bold" scope="col">Email</th>
-                    <th class="fw-bold" scope="col">Vai trò</th>
-                    <th class="fw-bold" scope="col">Action</th>
+                    <th class="fw-bold" scope="col"><button type="submit" class="btn fw-bold m-0 p-0">STT</button></th>
+
+                    <th class="fw-bold" scope="col">
+                        <form method="POST" action="">
+                            <input type="hidden" name="sortUser" value="fn">
+                            <button type="submit" class="btn fw-bold m-0 p-0">Tên Người Dùng<i
+                                    class="fa-solid fa-sort ms-2"></i></button>
+                        </form>
+                    </th>
+
+                    <th scope="col">
+                        <form method="POST" action="">
+                            <input type="hidden" name="sortUser" value="un">
+                            <button type="submit" class="btn fw-bold m-0 p-0">Tên Đăng Nhập<i
+                                    class="fa-solid fa-sort ms-2"></i></button>
+                        </form>
+                    </th>
+                    <th class="fw-bold" scope="col">
+                        <form method="POST" action="">
+                            <input type="hidden" name="sortUser" value="em">
+                            <button type="submit" class="btn fw-bold m-0 p-0">Email<i
+                                    class="fa-solid fa-sort ms-2"></i></button>
+                        </form>
+                    </th>
+                    <th class="fw-bold" scope="col"><button type="submit" class="btn fw-bold m-0 p-0">Vai trò</button>
+                    </th>
+                    <th class="fw-bold" scope="col"><button type="submit" class="btn fw-bold m-0 p-0">Action</button>
+                    </th>
                 </tr>
             </thead>
             <tbody>
